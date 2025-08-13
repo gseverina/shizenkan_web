@@ -337,14 +337,25 @@ function News() {
     <section id="noticias" className="py-12">
       <Container>
         <SectionTitle icon={Newspaper} title="Noticias" subtitle="Comunicaciones oficiales del dojo" />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {NEWS.map((n, idx) => (
-            <Card key={idx}>
-              <div className="text-xs text-gray-500">{new Date(n.date).toLocaleDateString()}</div>
-              <h3 className="mt-1 font-semibold">{n.title}</h3>
-              <p className="mt-2 text-sm text-gray-700">{n.body}</p>
-            </Card>
-          ))}
+        <div className="max-w-2xl mx-auto">
+          <Card className="text-center py-12">
+            <div className="flex justify-center mb-6">
+              <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center">
+                <Newspaper className="w-10 h-10 text-gray-400" />
+              </div>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-700 mb-3">
+              No hay noticias por el momento
+            </h3>
+            <p className="text-gray-600 mb-4">
+              Esta sección se actualizará con las últimas novedades del dojo, 
+              eventos, exámenes y comunicaciones importantes.
+            </p>
+            <div className="inline-flex items-center gap-2 text-sm text-blue-600 bg-blue-50 px-4 py-2 rounded-full">
+              <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+              Regresa pronto para ver las actualizaciones
+            </div>
+          </Card>
         </div>
       </Container>
     </section>
