@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
-import { Menu, Calendar, PhoneCall, Mail, MapPin, Newspaper, Sword } from 'lucide-react';
+import { Menu, Calendar, PhoneCall, Mail, MapPin, Newspaper, Sword, Users, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// --- Datos de ejemplo (puedes editar libremente) ---
+// --- Datos reales del dojo ---
+const DOJO_INFO = {
+  name: "Karate Do Shorin Ryu Shizenkan Okinawa",
+  meaning: "Shizenkan: Lugar de lo natural",
+  sensei: "Sergio Giambattistelli",
+  dan: "6º Dan",
+  description: "Dojo orientado a la formación integral: técnica, disciplina y valores. Escuela tradicional de Shorin Ryu con raíces en Okinawa."
+};
+
 const NEWS = [
   {
     title: "Examen de Kyu – Septiembre",
@@ -24,41 +32,126 @@ const CLASSES = [
   { day: "Sábados", time: "10:00 – 11:30", level: "Todos los niveles" },
 ];
 
+// Vocabulario real extraído del documento
 const VOCAB = [
   {
-    group: "Saludos",
+    group: "Saludos y Etiqueta",
     items: [
       {ja: "Rei", es: "Saludo"},
       {ja: "Kiotsuke", es: "Atención"},
-      {ja: "Seiza rei", es: "Sentarse correctamente, saludar"}
+      {ja: "Kiotsuke Rei", es: "Atención, saludar"},
+      {ja: "Seiza Rei", es: "Sentarse correctamente, saludar"},
+      {ja: "Sensei ni Rei", es: "Saludar al maestro"},
+      {ja: "Shomen ni Rei", es: "Saludar al frente"},
+      {ja: "Otagai ni Rei", es: "Saludar al compañero"}
     ]
   },
   {
-    group: "Personas",
+    group: "Personas del Dojo",
     items: [
       {ja: "Sensei", es: "Maestro"},
+      {ja: "Seito Deshi", es: "Alumno, estudiante o discípulo"},
+      {ja: "Uchi Deshi", es: "Estudiante personal"},
       {ja: "Senpai", es: "Alumno de mayor graduación"},
-      {ja: "Deshi", es: "Alumno / discípulo"}
+      {ja: "Kohay", es: "Alumno de menor graduación"},
+      {ja: "Dohay", es: "Compañero de igual categoría"}
     ]
   },
   {
-    group: "Técnicas (ejemplos)",
+    group: "Técnicas de Bloqueo",
     items: [
-      {ja: "Chudan uke", es: "Bloqueo nivel medio"},
-      {ja: "Gedan barai", es: "Barrido nivel bajo"},
-      {ja: "Oi tsuki", es: "Estocada a fondo"}
+      {ja: "Yodan Uke", es: "Bloqueo nivel alto"},
+      {ja: "Chudan Uke", es: "Bloqueo nivel medio"},
+      {ja: "Gedan Uke/Barai", es: "Bloqueo/barrido nivel bajo"},
+      {ja: "Soto Uke", es: "Bloqueo hacia fuera"},
+      {ja: "Uchi Uke", es: "Bloqueo hacia dentro"},
+      {ja: "Shuto Uke", es: "Bloqueo canto de la mano"}
+    ]
+  },
+  {
+    group: "Técnicas de Brazos",
+    items: [
+      {ja: "Oi Tsuki", es: "Estocada a fondo"},
+      {ja: "Gyaku Tsuki", es: "Golpe con base de pie cruzada"},
+      {ja: "Uraken", es: "Golpe con el revés del puño"},
+      {ja: "Teisho Tsuki", es: "Golpe frontal con la palma"}
+    ]
+  },
+  {
+    group: "Técnicas de Piernas",
+    items: [
+      {ja: "Mae Geri", es: "Patada adelante"},
+      {ja: "Mawashi Geri", es: "Patada circular"},
+      {ja: "Yoko Geri", es: "Patada al costado"},
+      {ja: "Ushiro Geri", es: "Patada hacia atrás"},
+      {ja: "Mikazuki Geri", es: "Patada creciente"},
+      {ja: "Kakato Geri", es: "Patada con talón"}
     ]
   }
 ];
 
+// Katas reales del estilo
 const KATAS = [
-  { name: "Kihon Kata (Shodan – Rokudan)", desc: "Energía de base" },
-  { name: "Fukyukata (Ichi – Ni)", desc: "Formas fundamentales" },
-  { name: "Pinan (Shodan – Godan)", desc: "Paz y tranquilidad" },
-  { name: "Naihanchi (Shodan – Sandan)", desc: "Jinete de viento" },
-  { name: "Kusanku (Sho – Dai)", desc: "Saludo al sol" },
-  { name: "Passai (Sho – Dai)", desc: "Atravesar la muralla" },
-  { name: "Chinto", desc: "Grulla sobre una roca" }
+  { 
+    name: "Kihon Kata (Shodan – Rokudan)", 
+    desc: "Energía de base (Primera causa)",
+    creator: "Choshin Chibana",
+    kanji: "きほんかた"
+  },
+  { 
+    name: "Fukyukata (Ichi – Ni)", 
+    desc: "Ceremonia a la luna (Forma fundamental)",
+    creator: "Shosin Nagamine (Ichi) / Chojun Miyagi (Ni)",
+    kanji: "ふきゅかた"
+  },
+  { 
+    name: "Naihanchi (Shodan, Nidan, Sandan)", 
+    desc: "Jinete de viento (Caballo de hierro)",
+    creator: "Sokon Matsumura (atribuido)",
+    kanji: "ないはんち"
+  },
+  { 
+    name: "Pinan (Shodan – Godan)", 
+    desc: "Paz y tranquilidad (La vía de la paz)",
+    creator: "Yasutsune Itosu (Anko Itosu)",
+    kanji: "ぴなん"
+  },
+  { 
+    name: "Kusanku (Sho – Dai)", 
+    desc: "Saludo al sol (Observando el cielo)",
+    creator: "Yasutsune Itosu (Sho) / Anko Itosu (Dai)",
+    kanji: "くしゃんく"
+  },
+  { 
+    name: "Passai (Sho – Dai)", 
+    desc: "Atravesar la muralla (Penetrar la fortaleza)",
+    creator: "Anko Itosu (Sho) / Sokon Matsumura (Dai)",
+    kanji: "ぱっさい"
+  },
+  { 
+    name: "Chinto", 
+    desc: "Grulla sobre una roca (Garza sobre una roca)",
+    creator: "Sokon Matsumura",
+    kanji: "ちんと"
+  },
+  { 
+    name: "Gojushiho", 
+    desc: "Profundidad de las manos (Cincuenta y cuatro pasos)",
+    creator: "Sokon Matsumura",
+    kanji: "ごじゅしほ"
+  },
+  { 
+    name: "Jion", 
+    desc: "Sonido del templo",
+    creator: "Tradicional",
+    kanji: "じあん"
+  },
+  { 
+    name: "Seisan (Hangetsu)", 
+    desc: "Camino de los 13 pasos (Media luna)",
+    creator: "Tradicional",
+    kanji: "セイサン"
+  }
 ];
 
 const Container = ({ children, className = "" }) => (
@@ -121,17 +214,30 @@ function Hero() {
   return (
     <div id="inicio" className="bg-gradient-to-b from-gray-50 to-white border-b">
       <Container className="py-14 sm:py-20">
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl sm:text-5xl font-extrabold tracking-tight"
         >
-          Karate-Do Shorin Ryu — Shizenkan
-        </motion.h1>
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
+            {DOJO_INFO.name}
+          </h1>
+          <p className="text-lg sm:text-xl text-blue-600 font-medium mt-2">
+            {DOJO_INFO.meaning}
+          </p>
+          <div className="flex items-center gap-4 mt-3 text-sm text-gray-600">
+            <span className="flex items-center gap-1">
+              <Users className="w-4 h-4" />
+              Sensei {DOJO_INFO.sensei}
+            </span>
+            <span className="flex items-center gap-1">
+              <Award className="w-4 h-4" />
+              {DOJO_INFO.dan}
+            </span>
+          </div>
+        </motion.div>
         <p className="max-w-2xl mt-4 text-gray-700">
-          Dojo orientado a la formación integral: técnica, disciplina y valores. Aquí encontrarás noticias,
-          horarios, información de exámenes y material de estudio.
+          {DOJO_INFO.description} Aquí encontrarás noticias, horarios, información de exámenes y material de estudio.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="#noticias" className="px-5 py-2 rounded-xl border shadow-sm hover:shadow transition">Ver noticias</a>
@@ -220,16 +326,28 @@ function VocabKatas() {
           </Card>
 
           <Card>
-            <h3 className="font-semibold mb-3">Katas del estilo</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold mb-3">Katas del estilo Shorin Ryu</h3>
+            <ul className="space-y-3">
               {KATAS.map((k) => (
-                <li key={k.name} className="p-3 rounded-xl border">
-                  <div className="font-medium">{k.name}</div>
-                  <div className="text-sm text-gray-700">{k.desc}</div>
+                <li key={k.name} className="p-4 rounded-xl border hover:bg-gray-50 transition">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-900">{k.name}</div>
+                      <div className="text-sm text-gray-700 mt-1">{k.desc}</div>
+                      <div className="text-xs text-blue-600 mt-1">Creador: {k.creator}</div>
+                    </div>
+                    {k.kanji && (
+                      <div className="text-lg text-gray-400 ml-3 font-japanese">
+                        {k.kanji}
+                      </div>
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-sm text-gray-600">Agrega notas, videos y requisitos por kata.</p>
+            <p className="mt-4 text-sm text-gray-600">
+              Sistema completo de katas del estilo Shorin Ryu Shizenkan, desde básicos hasta avanzados.
+            </p>
           </Card>
         </div>
       </Container>
@@ -277,7 +395,14 @@ export default function App() {
       <Classes />
       <VocabKatas />
       <Contact />
-      <footer className="py-8 border-t text-center text-sm text-gray-600">© {new Date().getFullYear()} Escuela de Karate — Shorin Ryu Shizenkan</footer>
+      <footer className="py-8 border-t text-center text-sm text-gray-600">
+        <div className="mb-2">
+          © {new Date().getFullYear()} {DOJO_INFO.name}
+        </div>
+        <div className="text-xs text-gray-500">
+          Sensei {DOJO_INFO.sensei} — {DOJO_INFO.dan}
+        </div>
+      </footer>
     </div>
   );
 }

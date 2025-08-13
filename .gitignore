@@ -22,6 +22,9 @@ build/
 *.swo
 *~
 
+# Documentation and assets (may contain sensitive info)
+docs/
+
 # OS generated files
 .DS_Store
 .DS_Store?
