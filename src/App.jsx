@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, Calendar, PhoneCall, Mail, MapPin, Newspaper, Sword, Users, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
+import logoDojo from './assets/logo-dojo.png';
 
 // --- Datos reales del dojo ---
 const DOJO_INFO = {
@@ -185,7 +186,10 @@ function Navbar() {
   return (
     <nav className="sticky top-0 z-50 backdrop-blur bg-white/80 border-b">
       <Container className="flex h-14 items-center justify-between">
-        <a href="#inicio" className="font-bold tracking-wide">Escuela de Karate</a>
+        <a href="#inicio" className="flex items-center gap-3">
+          <img src={logoDojo} alt="Logo Dojo Shizenkan" className="h-10 w-auto" />
+          <span className="font-bold tracking-wide text-lg">Shizenkan</span>
+        </a>
         <button className="sm:hidden" onClick={() => setOpen((v) => !v)} aria-label="Abrir menú">
           <Menu />
         </button>
@@ -218,7 +222,11 @@ function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="text-center"
         >
+          <div className="flex justify-center mb-6">
+            <img src={logoDojo} alt="Logo Dojo Shizenkan" className="h-24 w-auto drop-shadow-lg" />
+          </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
             {DOJO_INFO.name}
           </h1>
@@ -396,6 +404,9 @@ export default function App() {
       <VocabKatas />
       <Contact />
       <footer className="py-8 border-t text-center text-sm text-gray-600">
+        <div className="flex justify-center mb-4">
+          <img src={logoDojo} alt="Logo Dojo Shizenkan" className="h-12 w-auto opacity-70" />
+        </div>
         <div className="mb-2">
           © {new Date().getFullYear()} {DOJO_INFO.name}
         </div>
