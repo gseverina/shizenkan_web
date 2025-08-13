@@ -248,7 +248,12 @@ function Hero() {
             {DOJO_INFO.name}
           </h1>
           <p className="text-lg sm:text-xl text-blue-600 font-medium mt-2">
-            {DOJO_INFO.meaning}
+            <span className="font-japanese text-2xl">自然</span>
+            <span className="mx-2 text-gray-400">|</span>
+            <span className="font-japanese text-2xl">館</span>
+          </p>
+          <p className="text-sm text-gray-600 mt-1">
+            Shizen (自然) - Naturaleza • Kan (館) - Dojo
           </p>
           <div className="flex items-center gap-4 mt-3 text-sm text-gray-600">
             <span className="flex items-center gap-1">
