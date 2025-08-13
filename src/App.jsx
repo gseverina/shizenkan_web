@@ -98,6 +98,15 @@ const SCHOOL_OBJECTIVES = [
   "Hacer primar la razón por sobre la fuerza"
 ];
 
+// Numeración japonesa tradicional
+const JAPANESE_NUMBERS = [
+  { number: "一", romaji: "ICHI", meaning: "Uno" },
+  { number: "二", romaji: "NI", meaning: "Dos" },
+  { number: "三", romaji: "SAN", meaning: "Tres" },
+  { number: "四", romaji: "SHI", meaning: "Cuatro" },
+  { number: "五", romaji: "GO", meaning: "Cinco" }
+];
+
 // Katas reales del estilo
 const KATAS = [
   { 
@@ -270,8 +279,8 @@ function SchoolObjectives() {
       <Container>
         <SectionTitle 
           icon={Award} 
-          title="Objetivos de la Escuela Shizenkan" 
-          subtitle="Los 5 principios fundamentales que guían nuestro dojo"
+          title="Los 5 Objetivos de la Escuela Shizenkan" 
+          subtitle="五つの原則 - Go-tsu no Gensoku - Los principios fundamentales de Okinawa"
         />
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
@@ -291,15 +300,16 @@ function SchoolObjectives() {
               >
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                      {index + 1}
+                    <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex flex-col items-center justify-center text-white shadow-lg border-2 border-red-500">
+                      <div className="text-2xl font-bold leading-none">{JAPANESE_NUMBERS[index].number}</div>
+                      <div className="text-xs font-medium opacity-90">{JAPANESE_NUMBERS[index].romaji}</div>
                     </div>
-                    <div className="h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent"></div>
+                    <div className="h-px flex-1 bg-gradient-to-r from-red-200 to-transparent"></div>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
                     {objective}
                   </h3>
-                  <div className="w-full h-1 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="w-full h-1 bg-gradient-to-r from-red-500 to-red-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </motion.div>
             ))}
