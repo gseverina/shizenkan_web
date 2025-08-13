@@ -27,11 +27,8 @@ const NEWS = [
 ];
 
 const CLASSES = [
-  { day: "Lunes", time: "18:00 – 19:00", level: "Infantiles" },
-  { day: "Lunes", time: "19:00 – 20:30", level: "Juveniles/Adultos" },
-  { day: "Miércoles", time: "18:00 – 19:00", level: "Infantiles" },
-  { day: "Miércoles", time: "19:00 – 20:30", level: "Juveniles/Adultos" },
-  { day: "Sábados", time: "10:00 – 11:30", level: "Todos los niveles" },
+  { day: "Lunes", time: "20:00 – 21:30", level: "Todos los niveles" },
+  { day: "Miércoles", time: "20:00 – 21:30", level: "Todos los niveles" },
 ];
 
 // Vocabulario real extraído del documento
@@ -292,6 +289,7 @@ function Classes() {
             ))}
           </div>
           <p className="mt-4 text-sm text-gray-600">* Traer karategi y botella de agua. Llegar 10 minutos antes.</p>
+          <p className="mt-2 text-sm text-gray-600">* Clases para todos los niveles: principiantes, intermedios y avanzados.</p>
         </Card>
       </Container>
     </section>
