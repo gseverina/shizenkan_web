@@ -8,8 +8,8 @@ import logoDojo from './assets/logo-dojo.png';
 const DOJO_INFO = {
   name: "Karate Do Shorin Ryu Shizenkan Okinawa",
   meaning: "Shizenkan: Lugar de lo natural",
-  sensei: "Juan Carlos Sassola",
-  dan: "7º Dan",
+  sensei: "Sergio Giambattistelli",
+  dan: "6º Dan",
   description: "Dojo orientado a la formación integral: técnica, disciplina y valores. Escuela tradicional de Shorin Ryu con raíces en Okinawa. Conservamos la tradición respetando el pensamiento de los antiguos maestros."
 };
 
@@ -266,36 +266,51 @@ function Hero() {
 
 function SchoolObjectives() {
   return (
-    <section id="objetivos" className="py-12 bg-blue-50">
+    <section id="objetivos" className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
       <Container>
         <SectionTitle 
           icon={Award} 
           title="Objetivos de la Escuela Shizenkan" 
           subtitle="Los 5 principios fundamentales que guían nuestro dojo"
         />
-        <div className="max-w-4xl mx-auto">
-          <Card className="text-center">
-            <p className="text-lg text-gray-700 mb-6">
-              Nuestra escuela conserva la tradición de este arte respetando el pensamiento de los antiguos maestros y haciendo cumplir sus objetivos:
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+              Nuestra escuela conserva la tradición de este arte respetando el pensamiento de los antiguos maestros y haciendo cumplir sus objetivos fundamentales.
             </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-              {SCHOOL_OBJECTIVES.map((objective, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="p-4 rounded-xl bg-white border-2 border-blue-200 hover:border-blue-300 transition-colors"
-                >
-                  <div className="text-2xl font-bold text-blue-600 mb-2">{index + 1}</div>
-                  <div className="text-sm font-medium text-gray-800">{objective}</div>
-                </motion.div>
-              ))}
-            </div>
-            <p className="mt-6 text-sm text-gray-600">
-              Estos principios fundamentales guían cada clase y forman la base de nuestro sistema de valores.
+          </div>
+          
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {SCHOOL_OBJECTIVES.map((objective, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative"
+              >
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                      {index + 1}
+                    </div>
+                    <div className="h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent"></div>
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                    {objective}
+                  </h3>
+                  <div className="w-full h-1 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <p className="text-sm text-gray-600 max-w-2xl mx-auto">
+              Estos principios fundamentales guían cada clase y forman la base de nuestro sistema de valores, 
+              transmitiendo la sabiduría de los antiguos maestros de Okinawa.
             </p>
-          </Card>
+          </div>
         </div>
       </Container>
     </section>
