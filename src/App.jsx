@@ -91,10 +91,10 @@ const VOCAB = [
 
 // Objetivos de la escuela Shizenkan
 const SCHOOL_OBJECTIVES = [
-  "Ser honrado",
-  "Ser respetuosos", 
-  "Esforzarse",
-  "Defender la verdad",
+  "Ser Honrado",
+  "Ser Respetuoso", 
+  "Ser Esforzado",
+  "Defender la Verdad",
   "Hacer primar la razón por sobre la fuerza"
 ];
 
