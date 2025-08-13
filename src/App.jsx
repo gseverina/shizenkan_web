@@ -8,9 +8,9 @@ import logoDojo from './assets/logo-dojo.png';
 const DOJO_INFO = {
   name: "Karate Do Shorin Ryu Shizenkan Okinawa",
   meaning: "Shizenkan: Lugar de lo natural",
-  sensei: "Sergio Giambattistelli",
-  dan: "6º Dan",
-  description: "Dojo orientado a la formación integral: técnica, disciplina y valores. Escuela tradicional de Shorin Ryu con raíces en Okinawa."
+  sensei: "Juan Carlos Sassola",
+  dan: "7º Dan",
+  description: "Dojo orientado a la formación integral: técnica, disciplina y valores. Escuela tradicional de Shorin Ryu con raíces en Okinawa. Conservamos la tradición respetando el pensamiento de los antiguos maestros."
 };
 
 const NEWS = [
@@ -87,6 +87,15 @@ const VOCAB = [
       {ja: "Kakato Geri", es: "Patada con talón"}
     ]
   }
+];
+
+// Objetivos de la escuela Shizenkan
+const SCHOOL_OBJECTIVES = [
+  "Ser honrado",
+  "Ser respetuosos", 
+  "Esforzarse",
+  "Defender la verdad",
+  "Hacer primar la razón por sobre la fuerza"
 ];
 
 // Katas reales del estilo
@@ -175,6 +184,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const items = [
     { href: "#inicio", label: "Inicio" },
+    { href: "#objetivos", label: "Objetivos" },
     { href: "#noticias", label: "Noticias" },
     { href: "#clases", label: "Clases" },
     { href: "#vocabulario", label: "Vocabulario y Katas" },
@@ -251,6 +261,44 @@ function Hero() {
         </div>
       </Container>
     </div>
+  );
+}
+
+function SchoolObjectives() {
+  return (
+    <section id="objetivos" className="py-12 bg-blue-50">
+      <Container>
+        <SectionTitle 
+          icon={Award} 
+          title="Objetivos de la Escuela Shizenkan" 
+          subtitle="Los 5 principios fundamentales que guían nuestro dojo"
+        />
+        <div className="max-w-4xl mx-auto">
+          <Card className="text-center">
+            <p className="text-lg text-gray-700 mb-6">
+              Nuestra escuela conserva la tradición de este arte respetando el pensamiento de los antiguos maestros y haciendo cumplir sus objetivos:
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {SCHOOL_OBJECTIVES.map((objective, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="p-4 rounded-xl bg-white border-2 border-blue-200 hover:border-blue-300 transition-colors"
+                >
+                  <div className="text-2xl font-bold text-blue-600 mb-2">{index + 1}</div>
+                  <div className="text-sm font-medium text-gray-800">{objective}</div>
+                </motion.div>
+              ))}
+            </div>
+            <p className="mt-6 text-sm text-gray-600">
+              Estos principios fundamentales guían cada clase y forman la base de nuestro sistema de valores.
+            </p>
+          </Card>
+        </div>
+      </Container>
+    </section>
   );
 }
 
@@ -409,6 +457,7 @@ export default function App() {
     <div className="font-sans text-gray-900">
       <Navbar />
       <Hero />
+      <SchoolObjectives />
       <News />
       <Classes />
       <VocabKatas />
