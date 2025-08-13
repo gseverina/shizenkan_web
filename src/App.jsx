@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import logoDojo from './assets/logo-dojo.png';
 
 // --- Datos reales del dojo ---
+// Última actualización: Logo integrado del dojo
 const DOJO_INFO = {
   name: "Karate Do Shorin Ryu Shizenkan Okinawa",
   meaning: "Shizenkan: Lugar de lo natural",
