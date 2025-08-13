@@ -379,11 +379,22 @@ function Contact() {
           </Card>
           <Card>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2"><PhoneCall className="w-4 h-4"/> +54 9 351 000 0000</li>
-              <li className="flex items-center gap-2"><Mail className="w-4 h-4"/> dojo@example.com</li>
-              <li className="flex items-center gap-2"><MapPin className="w-4 h-4"/> Calle 123, Córdoba</li>
+              <li className="flex items-center gap-2"><PhoneCall className="w-4 h-4"/> +54 9 351 481 0200</li>
+              <li className="flex items-center gap-2"><Mail className="w-4 h-4"/> info@alouette.com.ar</li>
+              <li className="flex items-center gap-2"><MapPin className="w-4 h-4"/> Av Fernando Fader 3945, Córdoba</li>
+              <li className="text-xs text-gray-500 mt-2">
+                <span className="font-medium">Centro Alouette</span><br/>
+                Centro de Actividades Físicas y Terapéuticas
+              </li>
               <li>
-                <a className="underline" href="#">Google Maps</a>
+                <a className="underline text-blue-600" href="https://www.alouette.com.ar/" target="_blank" rel="noopener noreferrer">
+                  Visitar sitio web de Alouette
+                </a>
+              </li>
+              <li>
+                <a className="underline text-blue-600" href="https://maps.google.com/?q=Av+Fernando+Fader+3945,+Córdoba,+Argentina" target="_blank" rel="noopener noreferrer">
+                  📍 Ver en Google Maps
+                </a>
               </li>
             </ul>
           </Card>
