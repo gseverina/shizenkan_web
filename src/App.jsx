@@ -882,21 +882,42 @@ function KataLearning({ kata = FUKYUGATA_ICHI, navigateToHome }) {
   const nextStep = () => {
     if (currentStep < kata.steps.length - 1) {
       setCurrentStep(currentStep + 1);
-      window.scrollTo({ top: document.getElementById('kata-aprender')?.offsetTop - 100, behavior: 'smooth' });
+      // Scroll suave solo hasta el contenedor del paso (no al tope de la página)
+      setTimeout(() => {
+        const stepCard = document.getElementById('current-step-card');
+        if (stepCard) {
+          const offsetTop = stepCard.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+        }
+      }, 50);
     }
   };
 
   const prevStep = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
-      window.scrollTo({ top: document.getElementById('kata-aprender')?.offsetTop - 100, behavior: 'smooth' });
+      // Scroll suave solo hasta el contenedor del paso
+      setTimeout(() => {
+        const stepCard = document.getElementById('current-step-card');
+        if (stepCard) {
+          const offsetTop = stepCard.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+        }
+      }, 50);
     }
   };
 
   const goToStep = (index) => {
     setCurrentStep(index);
     setShowAllSteps(false);
-    window.scrollTo({ top: document.getElementById('kata-aprender')?.offsetTop - 100, behavior: 'smooth' });
+    // Scroll hasta el contenedor del paso
+    setTimeout(() => {
+      const stepCard = document.getElementById('current-step-card');
+      if (stepCard) {
+        const offsetTop = stepCard.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }
+    }, 50);
   };
 
   const getDirectionIcon = (icon) => {
@@ -1031,7 +1052,7 @@ function KataLearning({ kata = FUKYUGATA_ICHI, navigateToHome }) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="mb-4 border-2 border-indigo-200">
+              <Card id="current-step-card" className="mb-4 border-2 border-indigo-200">
                 <div className="flex items-center justify-between mb-4 pb-4 border-b">
                   <h4 className="text-lg font-semibold text-gray-900">
                     Movimiento {step.number} de {kata.totalMovements}
