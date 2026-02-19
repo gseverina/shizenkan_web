@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, Calendar, PhoneCall, Mail, MapPin, Newspaper, Sword, Users, Award, Zap, Target, BookOpen, Mountain } from 'lucide-react';
+import { Menu, Calendar, PhoneCall, Mail, MapPin, Newspaper, Sword, Users, Award, Zap, Target, BookOpen, Mountain, ChevronLeft, ChevronRight, Check, AlertCircle, Lightbulb, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, RotateCw } from 'lucide-react';
 import { motion } from 'framer-motion';
 import logoDojo from './assets/logo-dojo.png';
 
@@ -194,6 +194,281 @@ const KATAS = [
     kanji: "セイサン"
   }
 ];
+
+// Fukyugata Ichi - Kata completo paso a paso
+const FUKYUGATA_ICHI = {
+  name: "Fukyugata Ichi",
+  kanji: "普及型一",
+  romaji: "Fukyūgata Ichi",
+  meaning: "Forma de difusión número uno",
+  level: "Principiante",
+  totalMovements: 20,
+  creator: "Shoshin Nagamine",
+  description: "Kata fundamental diseñado para enseñar los principios básicos del karate. Creado en 1940 para la promoción del karate en las escuelas de Okinawa.",
+  embusenPattern: "linear_i",
+  steps: [
+    {
+      number: 1,
+      name: "Yoi",
+      nameJp: "ヨイ",
+      stance: { from: "Heisoku Dachi", to: "Hachiji Dachi" },
+      technique: "Posición de preparación",
+      direction: "Norte",
+      directionIcon: "up",
+      description: "Desde la posición de atención (pies juntos), abrir los pies al ancho de hombros en hachiji dachi (posición natural). Brazos relajados a los lados.",
+      keyPoint: "Mantener la espalda recta, hombros relajados, mirada al frente con concentración. Respirar profundamente.",
+      commonMistake: "Tensar los hombros o inclinar el cuerpo hacia adelante.",
+      count: "Preparación"
+    },
+    {
+      number: 2,
+      name: "Gedan Barai (Derecha)",
+      nameJp: "下段払い",
+      stance: { from: "Hachiji Dachi", to: "Zenkutsu Dachi" },
+      technique: "Barrido bajo con brazo derecho",
+      direction: "Este (Girar 90° derecha)",
+      directionIcon: "right",
+      description: "Girar 90° hacia la derecha entrando en zenkutsu dachi (postura adelantada) con pierna derecha adelante. Ejecutar gedan barai (barrido bajo) con el brazo derecho.",
+      keyPoint: "La cadera impulsa el giro. El puño termina sobre la rodilla adelantada. El brazo izquierdo se recoge al hikite (cadera).",
+      commonMistake: "Girar solo los hombros sin mover la cadera. No completar el hikite.",
+      count: "1"
+    },
+    {
+      number: 3,
+      name: "Oi Zuki Chudan",
+      nameJp: "追い突き中段",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Estocada al nivel medio",
+      direction: "Este (mismo rumbo)",
+      directionIcon: "right",
+      description: "Avanzar con la pierna izquierda en zenkutsu dachi mientras ejecutas oi zuki chudan (estocada al nivel medio) con el puño izquierdo.",
+      keyPoint: "Sincronizar el avance del pie con el golpe. La cadera rota al momento del impacto.",
+      commonMistake: "Golpear antes de completar el paso. Cadera no rota completamente.",
+      count: "2"
+    },
+    {
+      number: 4,
+      name: "Gedan Barai (Izquierda)",
+      nameJp: "下段払い",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Barrido bajo con brazo izquierdo",
+      direction: "Oeste (Girar 180° izquierda)",
+      directionIcon: "left",
+      description: "Girar 180° hacia la izquierda sobre el pie adelantado, entrando en zenkutsu dachi con pierna izquierda adelante. Ejecutar gedan barai con brazo izquierdo.",
+      keyPoint: "El giro es sobre la bola del pie derecho. Mantener la altura durante el giro.",
+      commonMistake: "Levantarse durante el giro. Perder el equilibrio.",
+      count: "3"
+    },
+    {
+      number: 5,
+      name: "Oi Zuki Chudan",
+      nameJp: "追い突き中段",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Estocada al nivel medio",
+      direction: "Oeste (mismo rumbo)",
+      directionIcon: "left",
+      description: "Avanzar con la pierna derecha en zenkutsu dachi mientras ejecutas oi zuki chudan con el puño derecho.",
+      keyPoint: "Mantener el nivel constante durante el avance. Mirar al frente, no al suelo.",
+      commonMistake: "Subir y bajar durante el paso. Perder la tensión del hikite.",
+      count: "4"
+    },
+    {
+      number: 6,
+      name: "Gedan Barai (Derecha)",
+      nameJp: "下段払い",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Barrido bajo con brazo derecho",
+      direction: "Norte (Girar 90° derecha)",
+      directionIcon: "up",
+      description: "Girar 90° hacia la derecha entrando en zenkutsu dachi con pierna derecha adelante. Ejecutar gedan barai con brazo derecho.",
+      keyPoint: "Este es el regreso a la línea central. Alinear correctamente el cuerpo hacia el norte.",
+      commonMistake: "No completar el ángulo de 90°. Quedarse diagonal.",
+      count: "5"
+    },
+    {
+      number: 7,
+      name: "Age Uke",
+      nameJp: "上げ受け",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Bloqueo alto",
+      direction: "Norte (mismo rumbo)",
+      directionIcon: "up",
+      description: "Avanzar con la pierna izquierda en zenkutsu dachi mientras ejecutas age uke (bloqueo alto) con el brazo izquierdo.",
+      keyPoint: "El antebrazo debe quedar a la altura de la frente, formando un ángulo de 45°. Codo al ancho del hombro.",
+      commonMistake: "Bloqueo demasiado adelante o demasiado atrás. Codo muy cerrado.",
+      count: "6"
+    },
+    {
+      number: 8,
+      name: "Gyaku Zuki Chudan",
+      nameJp: "逆突き中段",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Golpe inverso al nivel medio",
+      direction: "Norte (mismo rumbo)",
+      directionIcon: "up",
+      description: "Sin moverse, ejecutar gyaku zuki chudan (golpe inverso) con el puño derecho mientras el brazo izquierdo regresa a hikite.",
+      keyPoint: "La potencia viene de la rotación de cadera. Ambos movimientos (bloqueo y golpe) son simultáneos.",
+      commonMistake: "Adelantar el hombro. No rotar la cadera completamente.",
+      count: "7"
+    },
+    {
+      number: 9,
+      name: "Age Uke",
+      nameJp: "上げ受け",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Bloqueo alto",
+      direction: "Norte (mismo rumbo)",
+      directionIcon: "up",
+      description: "Avanzar con la pierna derecha en zenkutsu dachi mientras ejecutas age uke con el brazo derecho.",
+      keyPoint: "Mantener el mismo ritmo y altura que el age uke anterior. Consistencia.",
+      commonMistake: "Variar la altura o velocidad del movimiento.",
+      count: "8"
+    },
+    {
+      number: 10,
+      name: "Gyaku Zuki Chudan",
+      nameJp: "逆突き中段",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Golpe inverso al nivel medio",
+      direction: "Norte (mismo rumbo)",
+      directionIcon: "up",
+      description: "Sin moverse, ejecutar gyaku zuki chudan con el puño izquierdo.",
+      keyPoint: "Repetir con la misma potencia y técnica que el gyaku zuki anterior.",
+      commonMistake: "Perder concentración en las repeticiones.",
+      count: "9"
+    },
+    {
+      number: 11,
+      name: "Age Uke",
+      nameJp: "上げ受け",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Bloqueo alto",
+      direction: "Norte (mismo rumbo)",
+      directionIcon: "up",
+      description: "Avanzar con la pierna izquierda en zenkutsu dachi mientras ejecutas age uke con el brazo izquierdo.",
+      keyPoint: "Tercera repetición: mantener la calidad técnica hasta el final.",
+      commonMistake: "Apresurarse o perder la forma.",
+      count: "10"
+    },
+    {
+      number: 12,
+      name: "Gyaku Zuki Chudan",
+      nameJp: "逆突き中段",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Golpe inverso al nivel medio",
+      direction: "Norte (mismo rumbo)",
+      directionIcon: "up",
+      description: "Sin moverse, ejecutar gyaku zuki chudan con el puño derecho.",
+      keyPoint: "Último de la serie age uke - gyaku zuki. Máximo kime (foco).",
+      commonMistake: "Relajarse antes de terminar la secuencia.",
+      count: "11"
+    },
+    {
+      number: 13,
+      name: "Gedan Barai (Izquierda)",
+      nameJp: "下段払い",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Barrido bajo con brazo izquierdo",
+      direction: "Sur (Girar 270° izquierda)",
+      directionIcon: "down",
+      description: "Girar 270° hacia la izquierda (o 90° derecha por detrás) entrando en zenkutsu dachi con pierna izquierda adelante. Ejecutar gedan barai con brazo izquierdo.",
+      keyPoint: "Gran giro que requiere control. Mantener el equilibrio durante toda la rotación.",
+      commonMistake: "Perder el balance. No completar el ángulo completo.",
+      count: "12"
+    },
+    {
+      number: 14,
+      name: "Shuto Uke (Izquierda)",
+      nameJp: "手刀受け",
+      stance: { from: "Zenkutsu Dachi", to: "Kokutsu Dachi" },
+      technique: "Bloqueo con canto de mano izquierda",
+      direction: "Sur (mismo rumbo)",
+      directionIcon: "down",
+      description: "Avanzar con la pierna derecha en kokutsu dachi (postura atrás) mientras ejecutas shuto uke con la mano izquierda. Mano derecha adelante, palma abierta.",
+      keyPoint: "70% del peso en la pierna trasera. Ambas manos abiertas. Cadera de frente.",
+      commonMistake: "Poner mucho peso adelante. Cerrar las manos.",
+      count: "13"
+    },
+    {
+      number: 15,
+      name: "Shuto Uke (Derecha)",
+      nameJp: "手刀受け",
+      stance: { from: "Kokutsu Dachi", to: "Kokutsu Dachi" },
+      technique: "Bloqueo con canto de mano derecha",
+      direction: "Sur (mismo rumbo)",
+      directionIcon: "down",
+      description: "Avanzar con la pierna izquierda en kokutsu dachi mientras ejecutas shuto uke con la mano derecha. Mano izquierda adelante.",
+      keyPoint: "Mantener la misma altura y forma que el shuto uke anterior.",
+      commonMistake: "Cambiar la distribución de peso entre repeticiones.",
+      count: "14"
+    },
+    {
+      number: 16,
+      name: "Shuto Uke (Izquierda)",
+      nameJp: "手刀受け",
+      stance: { from: "Kokutsu Dachi", to: "Kokutsu Dachi" },
+      technique: "Bloqueo con canto de mano izquierda",
+      direction: "Sur (mismo rumbo)",
+      directionIcon: "down",
+      description: "Avanzar con la pierna derecha en kokutsu dachi mientras ejecutas shuto uke con la mano izquierda.",
+      keyPoint: "Tercera repetición: consistencia en la técnica.",
+      commonMistake: "Variar la altura o el ángulo.",
+      count: "15"
+    },
+    {
+      number: 17,
+      name: "Shuto Uke (Derecha)",
+      nameJp: "手刀受け",
+      stance: { from: "Kokutsu Dachi", to: "Kokutsu Dachi" },
+      technique: "Bloqueo con canto de mano derecha",
+      direction: "Sur (mismo rumbo)",
+      directionIcon: "down",
+      description: "Avanzar con la pierna izquierda en kokutsu dachi mientras ejecutas shuto uke con la mano derecha.",
+      keyPoint: "Última repetición de shuto uke. Mantener precisión.",
+      commonMistake: "Apresurarse hacia el final.",
+      count: "16"
+    },
+    {
+      number: 18,
+      name: "Mae Geri + Oi Zuki",
+      nameJp: "前蹴り・追い突き",
+      stance: { from: "Kokutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Patada frontal + Estocada",
+      direction: "Sur (mismo rumbo)",
+      directionIcon: "down",
+      description: "Ejecutar mae geri (patada frontal) con la pierna derecha, luego bajar en zenkutsu dachi y ejecutar oi zuki chudan con el puño derecho. Kiai!",
+      keyPoint: "Este movimiento lleva KIAI (grito). Máxima potencia y espíritu. La patada y el golpe son dos tiempos.",
+      commonMistake: "No hacer kiai. Perder el equilibrio en la patada.",
+      count: "17 - KIAI!"
+    },
+    {
+      number: 19,
+      name: "Gedan Barai (Derecha)",
+      nameJp: "下段払い",
+      stance: { from: "Zenkutsu Dachi", to: "Zenkutsu Dachi" },
+      technique: "Barrido bajo con brazo derecho",
+      direction: "Norte (Girar 180°)",
+      directionIcon: "up",
+      description: "Girar 180° hacia atrás (sobre el pie adelantado) entrando en zenkutsu dachi con pierna derecha adelante. Ejecutar gedan barai con brazo derecho.",
+      keyPoint: "Regresar a la posición inicial (mirando al norte). Giro controlado.",
+      commonMistake: "Perder la orientación. No quedar en la línea original.",
+      count: "18"
+    },
+    {
+      number: 20,
+      name: "Yame",
+      nameJp: "ヤメ",
+      stance: { from: "Zenkutsu Dachi", to: "Hachiji Dachi" },
+      technique: "Finalización",
+      direction: "Norte (mismo rumbo)",
+      directionIcon: "up",
+      description: "Recoger la pierna izquierda hacia la derecha, volviendo a hachiji dachi (posición natural). Brazos a los lados. Respirar.",
+      keyPoint: "Volver a la calma con control. Mostrar zanshin (conciencia residual). Luego, cerrar los pies a heisoku dachi.",
+      commonMistake: "Relajarse completamente antes de terminar el saludo final.",
+      count: "Finalización"
+    }
+  ]
+};
 
 const Container = ({ children, className = "" }) => (
   <div className={`mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
@@ -491,7 +766,7 @@ function Classes() {
   );
 }
 
-function VocabKatas() {
+function VocabKatas({ navigateToKata }) {
   const [open, setOpen] = useState(0);
   return (
     <section id="vocabulario" className="py-12">
@@ -529,6 +804,35 @@ function VocabKatas() {
 
           <Card>
             <h3 className="font-semibold mb-3">Katas del estilo Shorin Ryu</h3>
+
+            {/* Destacar Fukyugata Ichi con guía interactiva */}
+            <div className="mb-6 p-4 rounded-xl bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="font-bold text-indigo-900">Fukyugata Ichi</div>
+                    <span className="px-2 py-0.5 bg-green-500 text-white text-xs rounded-full font-medium">
+                      Guía interactiva
+                    </span>
+                  </div>
+                  <div className="text-sm text-gray-700 mb-1">Ceremonia a la luna (Forma fundamental)</div>
+                  <div className="text-xs text-indigo-600">Creador: Shoshin Nagamine</div>
+                </div>
+                <div className="text-xl text-indigo-400 ml-3 font-japanese">
+                  ふきゅかた
+                </div>
+              </div>
+              <button
+                onClick={() => navigateToKata(FUKYUGATA_ICHI)}
+                className="w-full mt-3 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-medium hover:from-indigo-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+              >
+                <BookOpen className="w-5 h-5" />
+                Aprende este kata paso a paso
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Lista de otros katas */}
             <ul className="space-y-3">
               {KATAS.map((k) => (
                 <li key={k.name} className="p-4 rounded-xl border hover:bg-gray-50 transition">
@@ -554,6 +858,354 @@ function VocabKatas() {
         </div>
       </Container>
     </section>
+  );
+}
+
+function KataLearning({ kata = FUKYUGATA_ICHI, navigateToHome }) {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [learnedSteps, setLearnedSteps] = useState(new Set());
+  const [showAllSteps, setShowAllSteps] = useState(false);
+
+  const step = kata.steps[currentStep];
+  const progress = Math.round((learnedSteps.size / kata.totalMovements) * 100);
+
+  const toggleLearned = (stepNumber) => {
+    const newLearned = new Set(learnedSteps);
+    if (newLearned.has(stepNumber)) {
+      newLearned.delete(stepNumber);
+    } else {
+      newLearned.add(stepNumber);
+    }
+    setLearnedSteps(newLearned);
+  };
+
+  const nextStep = () => {
+    if (currentStep < kata.steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+      window.scrollTo({ top: document.getElementById('kata-aprender')?.offsetTop - 100, behavior: 'smooth' });
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+      window.scrollTo({ top: document.getElementById('kata-aprender')?.offsetTop - 100, behavior: 'smooth' });
+    }
+  };
+
+  const goToStep = (index) => {
+    setCurrentStep(index);
+    setShowAllSteps(false);
+    window.scrollTo({ top: document.getElementById('kata-aprender')?.offsetTop - 100, behavior: 'smooth' });
+  };
+
+  const getDirectionIcon = (icon) => {
+    switch(icon) {
+      case 'up': return <ArrowUp className="w-5 h-5" />;
+      case 'down': return <ArrowDown className="w-5 h-5" />;
+      case 'left': return <ArrowLeft className="w-5 h-5" />;
+      case 'right': return <ArrowRight className="w-5 h-5" />;
+      default: return <RotateCw className="w-5 h-5" />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50/30">
+      {/* Header with Back Button */}
+      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b shadow-sm">
+        <Container className="flex items-center justify-between h-16">
+          <button
+            onClick={navigateToHome}
+            className="flex items-center gap-2 text-gray-700 hover:text-indigo-600 transition-colors font-medium"
+          >
+            <ChevronLeft className="w-5 h-5" />
+            Volver al Dojo
+          </button>
+          <div className="flex items-center gap-3">
+            <img src={logoDojo} alt="Logo Dojo" className="h-8 w-auto" />
+            <span className="font-bold text-gray-900">Shizenkan</span>
+          </div>
+          <a
+            href="#inicio"
+            onClick={(e) => { e.preventDefault(); navigateToHome(); }}
+            className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            🏠 Inicio
+          </a>
+        </Container>
+      </div>
+
+      {/* Main Content */}
+      <Container className="py-12">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+            Aprende un Kata
+          </h1>
+          <p className="text-gray-600">Guía paso a paso interactiva</p>
+        </div>
+
+        <div className="max-w-4xl mx-auto">
+          {/* Kata Header */}
+          <Card className="mb-6 bg-gradient-to-br from-indigo-600 to-purple-600 text-white border-none">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold mb-2">{kata.name}</h3>
+              <p className="text-2xl font-japanese mb-2">{kata.kanji}</p>
+              <p className="text-indigo-100 text-sm mb-4">{kata.meaning}</p>
+              <div className="flex justify-center gap-6 text-sm">
+                <span className="flex items-center gap-1">
+                  <Award className="w-4 h-4" />
+                  Nivel: {kata.level}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Users className="w-4 h-4" />
+                  Creador: {kata.creator}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Sword className="w-4 h-4" />
+                  {kata.totalMovements} movimientos
+                </span>
+              </div>
+            </div>
+          </Card>
+
+          {/* Description */}
+          <Card className="mb-6">
+            <p className="text-gray-700 leading-relaxed">{kata.description}</p>
+          </Card>
+
+          {/* Embusen Diagram */}
+          <Card className="mb-6">
+            <h4 className="font-semibold mb-4 text-center">Embusen (Patrón del Kata)</h4>
+            <div className="bg-gray-50 rounded-xl p-8 flex justify-center">
+              <div className="text-center font-mono text-sm text-gray-600">
+                <div className="mb-2">↑ NORTE (Inicio)</div>
+                <div className="border-2 border-indigo-400 rounded-lg p-6 bg-white inline-block">
+                  <div className="flex items-center gap-4">
+                    <div className="text-right">
+                      <div>Este →</div>
+                      <div className="text-xs text-gray-500">(mov 2-3)</div>
+                    </div>
+                    <div className="border-l-2 border-t-2 border-r-2 border-b-2 border-gray-400 px-8 py-12 relative">
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full mb-2">
+                        <div className="text-indigo-600 font-bold">▲</div>
+                        <div className="text-xs">6-12</div>
+                      </div>
+                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full mt-2">
+                        <div className="text-xs">13-18</div>
+                        <div className="text-indigo-600 font-bold">▼</div>
+                      </div>
+                      <div className="text-center text-xs text-gray-500">
+                        Patrón en "I"<br/>lineal
+                      </div>
+                    </div>
+                    <div className="text-left">
+                      <div>← Oeste</div>
+                      <div className="text-xs text-gray-500">(mov 4-5)</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-2">↓ SUR (Final: mov 19-20)</div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Progress Bar */}
+          <Card className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-gray-700">Tu Progreso</span>
+              <span className="text-sm text-gray-600">{learnedSteps.size} / {kata.totalMovements} movimientos</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+              <div
+                className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all duration-500"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </Card>
+
+          {/* Step Navigator */}
+          {!showAllSteps ? (
+            <motion.div
+              key={currentStep}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="mb-4 border-2 border-indigo-200">
+                <div className="flex items-center justify-between mb-4 pb-4 border-b">
+                  <h4 className="text-lg font-semibold text-gray-900">
+                    Movimiento {step.number} de {kata.totalMovements}
+                  </h4>
+                  <button
+                    onClick={() => toggleLearned(step.number)}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                      learnedSteps.has(step.number)
+                        ? 'bg-green-100 text-green-700 border-2 border-green-300'
+                        : 'bg-gray-100 text-gray-600 border-2 border-gray-300 hover:bg-gray-200'
+                    }`}
+                  >
+                    <Check className="w-4 h-4" />
+                    {learnedSteps.has(step.number) ? 'Aprendido' : 'Marcar como aprendido'}
+                  </button>
+                </div>
+
+                {/* Step Title */}
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-indigo-600 mb-1">{step.name}</h3>
+                  <p className="text-xl font-japanese text-gray-600 mb-2">{step.nameJp}</p>
+                  <p className="text-gray-700 font-medium">{step.technique}</p>
+                </div>
+
+                {/* Stance and Direction */}
+                <div className="grid sm:grid-cols-2 gap-4 mb-6">
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <div className="text-xs text-blue-600 font-medium mb-1">POSTURA</div>
+                    <div className="text-sm">
+                      <span className="text-gray-600">{step.stance.from}</span>
+                      <span className="mx-2">→</span>
+                      <span className="font-semibold text-gray-900">{step.stance.to}</span>
+                    </div>
+                  </div>
+                  <div className="bg-purple-50 rounded-lg p-4">
+                    <div className="text-xs text-purple-600 font-medium mb-1">DIRECCIÓN</div>
+                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-900">
+                      {getDirectionIcon(step.directionIcon)}
+                      {step.direction}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <div className="mb-6 bg-gray-50 rounded-lg p-4">
+                  <div className="text-xs text-gray-600 font-medium mb-2">📝 INSTRUCCIÓN</div>
+                  <p className="text-gray-800 leading-relaxed">{step.description}</p>
+                </div>
+
+                {/* Key Point */}
+                <div className="mb-4 bg-green-50 border-l-4 border-green-400 rounded-r-lg p-4">
+                  <div className="flex items-start gap-2">
+                    <Lightbulb className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <div className="text-xs text-green-700 font-medium mb-1">PUNTO CLAVE</div>
+                      <p className="text-sm text-gray-800">{step.keyPoint}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Common Mistake */}
+                <div className="mb-6 bg-amber-50 border-l-4 border-amber-400 rounded-r-lg p-4">
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <div className="text-xs text-amber-700 font-medium mb-1">ERROR COMÚN</div>
+                      <p className="text-sm text-gray-800">{step.commonMistake}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Count */}
+                <div className="text-center py-3 bg-indigo-50 rounded-lg">
+                  <div className="text-xs text-indigo-600 font-medium mb-1">CUENTA</div>
+                  <div className="text-2xl font-bold text-indigo-600">{step.count}</div>
+                </div>
+              </Card>
+
+              {/* Navigation Buttons */}
+              <div className="flex items-center justify-between gap-4">
+                <button
+                  onClick={prevStep}
+                  disabled={currentStep === 0}
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-indigo-300 bg-white hover:bg-indigo-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                  Anterior
+                </button>
+
+                <button
+                  onClick={() => setShowAllSteps(true)}
+                  className="px-6 py-3 rounded-xl border-2 border-gray-300 bg-white hover:bg-gray-50 transition-all text-sm"
+                >
+                  Ver todos los pasos
+                </button>
+
+                <button
+                  onClick={nextStep}
+                  disabled={currentStep === kata.steps.length - 1}
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                >
+                  Siguiente
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+            </motion.div>
+          ) : (
+            /* All Steps View */
+            <Card>
+              <div className="flex items-center justify-between mb-6">
+                <h4 className="text-xl font-bold text-gray-900">Todos los Movimientos</h4>
+                <button
+                  onClick={() => setShowAllSteps(false)}
+                  className="text-sm text-indigo-600 hover:text-indigo-800"
+                >
+                  ← Volver al paso actual
+                </button>
+              </div>
+              <div className="space-y-2">
+                {kata.steps.map((s, index) => (
+                  <button
+                    key={s.number}
+                    onClick={() => goToStep(index)}
+                    className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
+                      index === currentStep
+                        ? 'border-indigo-400 bg-indigo-50'
+                        : 'border-gray-200 hover:border-indigo-200 hover:bg-gray-50'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                          learnedSteps.has(s.number) ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-600'
+                        }`}>
+                          {learnedSteps.has(s.number) ? <Check className="w-5 h-5" /> : s.number}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-900">{s.name}</div>
+                          <div className="text-sm text-gray-600">{s.technique}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-500">
+                        {getDirectionIcon(s.directionIcon)}
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </Card>
+          )}
+        </div>
+      </Container>
+
+      {/* Footer */}
+      <footer className="py-8 border-t bg-white text-center text-sm text-gray-600">
+        <Container>
+          <div className="flex justify-center mb-4">
+            <img src={logoDojo} alt="Logo Dojo Shizenkan" className="h-12 w-auto opacity-70" />
+          </div>
+          <div className="mb-2">
+            © {new Date().getFullYear()} {DOJO_INFO.name}
+          </div>
+          <div className="text-xs text-gray-500">
+            Sensei {DOJO_INFO.sensei} — {DOJO_INFO.dan}
+          </div>
+          <button
+            onClick={navigateToHome}
+            className="mt-4 text-indigo-600 hover:text-indigo-800 text-sm font-medium"
+          >
+            ← Regresar al sitio principal
+          </button>
+        </Container>
+      </footer>
+    </div>
   );
 }
 
@@ -600,27 +1252,56 @@ function Contact() {
 }
 
 export default function App() {
-  return (
-    <div className="font-sans text-gray-900">
-      <Navbar />
-      <Hero />
-      <OurStyle />
-      <SchoolObjectives />
-      <News />
-      <Classes />
-      <VocabKatas />
-      <Contact />
-      <footer className="py-8 border-t text-center text-sm text-gray-600">
-        <div className="flex justify-center mb-4">
-          <img src={logoDojo} alt="Logo Dojo Shizenkan" className="h-12 w-auto opacity-70" />
-        </div>
-        <div className="mb-2">
-          © {new Date().getFullYear()} {DOJO_INFO.name}
-        </div>
-        <div className="text-xs text-gray-500">
-          Sensei {DOJO_INFO.sensei} — {DOJO_INFO.dan}
-        </div>
-      </footer>
-    </div>
-  );
+  const [currentPage, setCurrentPage] = useState('home');
+  const [selectedKata, setSelectedKata] = useState(null);
+
+  const navigateToKata = (kata) => {
+    setSelectedKata(kata);
+    setCurrentPage('kata');
+    window.scrollTo(0, 0);
+    window.location.hash = 'kata/' + kata.name.toLowerCase().replace(/\s/g, '-');
+  };
+
+  const navigateToHome = () => {
+    setCurrentPage('home');
+    setSelectedKata(null);
+    window.scrollTo(0, 0);
+    window.location.hash = '';
+  };
+
+  // Main Page
+  if (currentPage === 'home') {
+    return (
+      <div className="font-sans text-gray-900">
+        <Navbar />
+        <Hero />
+        <OurStyle />
+        <SchoolObjectives />
+        <News />
+        <Classes />
+        <VocabKatas navigateToKata={navigateToKata} />
+        <Contact />
+        <footer className="py-8 border-t text-center text-sm text-gray-600">
+          <div className="flex justify-center mb-4">
+            <img src={logoDojo} alt="Logo Dojo Shizenkan" className="h-12 w-auto opacity-70" />
+          </div>
+          <div className="mb-2">
+            © {new Date().getFullYear()} {DOJO_INFO.name}
+          </div>
+          <div className="text-xs text-gray-500">
+            Sensei {DOJO_INFO.sensei} — {DOJO_INFO.dan}
+          </div>
+        </footer>
+      </div>
+    );
+  }
+
+  // Kata Learning Page
+  if (currentPage === 'kata') {
+    return (
+      <div className="font-sans text-gray-900">
+        <KataLearning kata={selectedKata} navigateToHome={navigateToHome} />
+      </div>
+    );
+  }
 }
