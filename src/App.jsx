@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, Calendar, PhoneCall, Mail, MapPin, Newspaper, Sword, Users, Award } from 'lucide-react';
+import { Menu, Calendar, PhoneCall, Mail, MapPin, Newspaper, Sword, Users, Award, Zap, Target, BookOpen, Mountain } from 'lucide-react';
 import { motion } from 'framer-motion';
 import logoDojo from './assets/logo-dojo.png';
 
@@ -89,10 +89,34 @@ const VOCAB = [
   }
 ];
 
+// Características del estilo Shōrin-ryū
+const STYLE_CHARACTERISTICS = [
+  {
+    icon: Mountain,
+    title: "Agilidad y Naturalidad",
+    description: "Movimientos fluidos que respetan el equilibrio natural del cuerpo"
+  },
+  {
+    icon: Zap,
+    title: "Velocidad y Precisión",
+    description: "Economía técnica con máxima eficiencia en cada movimiento"
+  },
+  {
+    icon: Target,
+    title: "Aplicaciones Prácticas",
+    description: "Katas con bunkai enfocados en distancia corta y media"
+  },
+  {
+    icon: BookOpen,
+    title: "Base Tradicional",
+    description: "Fundamentado en kihon, kata, postura y control del centro"
+  }
+];
+
 // Objetivos de la escuela Shizenkan
 const SCHOOL_OBJECTIVES = [
   "Ser Honrado",
-  "Ser Respetuoso", 
+  "Ser Respetuoso",
   "Ser Esforzado",
   "Defender la Verdad",
   "Hacer primar la razón por sobre la fuerza"
@@ -193,6 +217,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const items = [
     { href: "#inicio", label: "Inicio" },
+    { href: "#estilo", label: "Nuestro Estilo" },
     { href: "#objetivos", label: "Objetivos" },
     { href: "#noticias", label: "Noticias" },
     { href: "#clases", label: "Clases" },
@@ -275,6 +300,87 @@ function Hero() {
         </div>
       </Container>
     </div>
+  );
+}
+
+function OurStyle() {
+  return (
+    <section id="estilo" className="py-16 bg-gradient-to-br from-slate-50 to-blue-50/30 border-b">
+      <Container>
+        <div className="text-center mb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+              El Estilo Shōrin-ryū
+            </h2>
+            <p className="text-2xl sm:text-3xl text-blue-700 font-medium mb-2">
+              <span className="font-japanese">少林流</span>
+            </p>
+            <p className="text-sm text-gray-600 mb-6">
+              Shōrin (少林) - Pequeño Bosque • Ryū (流) - Escuela
+            </p>
+          </motion.div>
+
+          <div className="max-w-3xl mx-auto">
+            <Card className="bg-white/80 backdrop-blur">
+              <p className="text-gray-700 leading-relaxed mb-4">
+                <strong className="text-gray-900">Shōrin-ryū</strong> es uno de los estilos tradicionales más antiguos del karate de <strong>Okinawa</strong>.
+                El término se traduce como "escuela del pequeño bosque" y se asocia históricamente a la idea de "Shaolin",
+                como referencia cultural a las influencias chinas presentes en el karate okinawense.
+              </p>
+              <p className="text-gray-700 leading-relaxed">
+                En su desarrollo moderno, Shōrin-ryū se organizó formalmente en el siglo XX y se vincula con el linaje del <strong>Shuri-te</strong>,
+                una de las grandes corrientes tradicionales de Okinawa.
+              </p>
+            </Card>
+          </div>
+        </div>
+
+        <div className="mt-12">
+          <h3 className="text-xl font-semibold text-center text-gray-900 mb-8">
+            Características del Estilo
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {STYLE_CHARACTERISTICS.map((characteristic, index) => {
+              const IconComponent = characteristic.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group"
+                >
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 bg-white/90 backdrop-blur">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white mb-4 shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
+                        <IconComponent className="w-8 h-8" />
+                      </div>
+                      <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                        {characteristic.title}
+                      </h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {characteristic.description}
+                      </p>
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="text-center mt-10">
+          <p className="text-sm text-gray-600 max-w-2xl mx-auto">
+            Nuestro dojo conserva la tradición del Shōrin-ryū respetando el pensamiento de los antiguos maestros,
+            enfocándose en la formación integral: técnica, disciplina y valores.
+          </p>
+        </div>
+      </Container>
+    </section>
   );
 }
 
@@ -498,6 +604,7 @@ export default function App() {
     <div className="font-sans text-gray-900">
       <Navbar />
       <Hero />
+      <OurStyle />
       <SchoolObjectives />
       <News />
       <Classes />
